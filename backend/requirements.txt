@@ -1,0 +1,13 @@
+fastapi>=0.115,<1.0
+uvicorn[standard]>=0.30,<1.0
+SQLAlchemy>=2.0,<3.0
+python-jose[cryptography]>=3.3,<4.0
+cryptography>=42
+requests>=2.31
+APScheduler>=3.10,<4.0
+numpy>=1.26
+opencv-python-headless>=4.9
+
+# Optional: automatic click-word captcha solving (msg 302).
+# Without it the challenge is shown in the web UI for manual clicking.
+# onnxruntime>=1.17

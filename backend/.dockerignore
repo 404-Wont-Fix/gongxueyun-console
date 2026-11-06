@@ -1,0 +1,5 @@
+requirements-dev.txt
+Dockerfile
+__pycache__/
+.pytest_cache/
+*.db

@@ -1,0 +1,57 @@
+# python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# node
+node_modules/
+dist/
+.vite/
+
+# runtime
+data/
+models/
+*.db
+*.db-wal
+*.db-shm
+.env
+.env.*
+!.env.example
+*.sqlite
+*.sqlite3
+*.db-*
+*.bak
+*.backup
+backups/
+*.log
+logs/
+
+# agent/browser artifacts may contain account data or access tokens
+.pi/
+.playwright-cli/
+playwright-report/
+test-results/
+auth.json
+storage-state*.json
+storageState*.json
+*.har
+*.saz
+*.pcap
+*.pcapng
+/calendar-*.png
+/map-*.png
+
+# local credentials / certificates / private model & APK artifacts
+*.pem
+*.key
+*.p12
+*.pfx
+*.onnx
+*.apk
+
+# editor
+.vscode/
+.idea/
+.DS_Store

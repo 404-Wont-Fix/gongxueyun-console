@@ -1,0 +1,35 @@
+name: gongxueyun-console
+
+services:
+  backend:
+    build: ./backend
+    container_name: gongxueyun-backend
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-sqlite:////data/gxy.db}
+      APP_SECRET: ${APP_SECRET:?APP_SECRET is required}
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-admin}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?ADMIN_PASSWORD is required}
+      SCHEDULER_ENABLED: ${SCHEDULER_ENABLED:-true}
+      CAPTCHA_MODEL_DIR: ${CAPTCHA_MODEL_DIR:-/models}
+    volumes:
+      - ./data:/data
+      - ./models:/models:ro
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request;urllib.request.urlopen('http://127.0.0.1:8000/api/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  frontend:
+    build: ./frontend
+    container_name: gongxueyun-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "${FRONTEND_PORT:-8080}:80"
